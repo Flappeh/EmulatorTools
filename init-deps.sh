@@ -6,8 +6,8 @@
 set -e
 
 # Install sdk
-apt update && apt upgrade -y
-apt install openjdk-17-jdk -y
+sudo apt update && sudo apt upgrade -y
+sudo apt install openjdk-17-jdk -y
 java -version
 
 # Install android tools
@@ -17,10 +17,13 @@ wget -O cmdline.zip https://dl.google.com/android/repository/commandlinetools-li
 wget -O platform.zip https://dl.google.com/android/repository/platform-tools-latest-linux.zip
 
 ANDROID_HOME=/opt/androidsdk
-mkdir -p $ANDROID_HOME
-apt install unzip -y 
+SDK=/opt/androidsdk
+sudo mkdir -p $ANDROID_HOME
+sudo apt install unzip -y 
+sudo chown -R $USER:$USER $ANDROID_HOME
 unzip cmdline.zip -d $ANDROID_HOME
 unzip platform.zip -d $ANDROID_HOME
+cd ~ && rm -rf android-tools
 mkdir -p $ANDROID_HOME/cmdline-tools/tools
 mv $ANDROID_HOME/cmdline-tools/bin $ANDROID_HOME/cmdline-tools/tools
 mv $ANDROID_HOME/cmdline-tools/lib $ANDROID_HOME/cmdline-tools/tools
@@ -32,7 +35,6 @@ echo "export SDK=$ANDROID_HOME" >> ~/.bashrc
 echo "export PATH=$SDK/emulator:$SDK/cmdline-tools/tools:$SDK/cmdline-tools/tools/bin:$SDK/platform-tools:$PATH" >> ~/.bashrc
 source ~/.bashrc
 
-chown -R $USER:$USER $ANDROID_HOME
 
 yes | sdkmanager "platform-tools" "platforms;android-33" "emulator"
 yes | sdkmanager "system-images;android-33;google_apis;x86_64"
