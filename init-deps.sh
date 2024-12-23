@@ -22,7 +22,9 @@ apt install unzip -y
 unzip cmdline.zip -d $ANDROID_HOME
 unzip platform.zip -d $ANDROID_HOME
 mkdir -p $ANDROID_HOME/cmdline-tools/tools
-mv $ANDROID_HOME/cmdline-tools/ $ANDROID_HOME/cmdline-tools/tools
+mv $ANDROID_HOME/cmdline-tools/bin $ANDROID_HOME/cmdline-tools/tools
+mv $ANDROID_HOME/cmdline-tools/lib $ANDROID_HOME/cmdline-tools/tools
+mv $ANDROID_HOME/cmdline-tools/source.properties $ANDROID_HOME/cmdline-tools/tools
 
 echo "export ANDROID_HOME=/opt/androidsdk" >> ~/.bashrc
 echo "export ANDROID_SDK_ROOT=$ANDROID_HOME" >> ~/.bashrc
