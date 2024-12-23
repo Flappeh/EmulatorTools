@@ -19,8 +19,9 @@ wget -O platform.zip https://dl.google.com/android/repository/platform-tools-lat
 # Install dependencies
 sudo apt install unzip -y \
     zsh \
-    xvfb
-
+    xvfb \
+    libpulse0 \
+    netcat
 
 ANDROID_HOME=/opt/androidsdk
 SDK=/opt/androidsdk
@@ -45,5 +46,4 @@ yes | sdkmanager "platform-tools" "platforms;android-33" "emulator"
 yes | sdkmanager "system-images;android-33;google_apis;x86_64"
 emulator -version
 
-echo "INSTALL ANDROID SDK DONE!"
-echo "run 01.emulator-up.sh [new device name] to start emulator"
+echo "Finished initializing dependencies for project"

@@ -25,7 +25,7 @@ export DISPLAY=:1
 #-----
 echo "$fg[green]\n# Searching for AVDs$reset_color"
 
-avds=$(~/Tools/cmdline-tools/emulator/emulator -list-avds | grep avd33)
+avds=$(emulator -list-avds | grep avd33)
 echo "$fg[yellow]👇 Found:"
 echo "$fg[blue]$avds$reset_color"
 avd=$(sudo -u flappeh echo $avds | head -1)
@@ -35,7 +35,7 @@ echo "$fg[green]\n# Removing all locks"
 sudo rm -rf /home/$USER/.android/avd/$avd.avd/*.lock
 
 echo "$fg[green]\n# Starting '$avd'$reset_color"
-/opt/androidsdk/emulator/emulator @$avd -netdelay none -netspeed full -no-snapshot-load -dns-server 8.8.8.8 -gpu host -cores 4 -memory 1568 -no-audio -no-window -accel on $optColdBoot  &
+emulator @$avd -netdelay none -netspeed full -no-snapshot-load -dns-server 8.8.8.8 -gpu auto -cores 4 -memory 1568 -no-audio -no-window -accel on $optColdBoot  &
 
 waitSeconds=45
 if [ -z $cold ]; then
