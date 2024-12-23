@@ -16,10 +16,15 @@ cd android-tools
 wget -O cmdline.zip https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
 wget -O platform.zip https://dl.google.com/android/repository/platform-tools-latest-linux.zip
 
+# Install dependencies
+sudo apt install unzip -y \
+    zsh \
+    xvfb
+
+
 ANDROID_HOME=/opt/androidsdk
 SDK=/opt/androidsdk
 sudo mkdir -p $ANDROID_HOME
-sudo apt install unzip -y 
 sudo chown -R $USER:$USER $ANDROID_HOME
 unzip cmdline.zip -d $ANDROID_HOME
 unzip platform.zip -d $ANDROID_HOME
